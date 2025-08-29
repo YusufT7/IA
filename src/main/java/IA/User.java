@@ -2,17 +2,25 @@ package IA;
 
 public class User {
     private int userId;
-    private String userName;
-    private String password;
+    private String first_name;
+    private String last_name;
     private String email;
     private String phoneNum;
 
-    public User(int userId, String userName, String password, String email, String phoneNum) {
+    public User(int userId, String email, String phoneNum, String first_name, String last_name) {
         this.userId = userId;
-        this.userName = userName;
-        this.password = password;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.email = email;
         this.phoneNum = phoneNum;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
     public int getUserId() {
@@ -23,20 +31,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
     public String getEmail() {
