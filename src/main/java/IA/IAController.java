@@ -1,8 +1,12 @@
 package IA;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,50 +22,99 @@ public class IAController {
     @FXML
     TextField txtSerialNum = new TextField();
     @FXML
+    TextField txtID = new TextField();
+    @FXML
     ComboBox cmbType = new ComboBox();
     @FXML
-    ComboBox cmbColor = new ComboBox();
+    ColorPicker cmbPrimColor = new ColorPicker();
+    @FXML
+    ColorPicker cmbSecColor = new ColorPicker();
     @FXML
     ComboBox cmbBrand = new ComboBox();
     @FXML
-    Label labelN = new Label();
+    ComboBox cmbPurpose = new ComboBox();
+    @FXML
+    ToggleButton tglButton = new ToggleButton();
+    @FXML
+    CheckBox chkSafety = new CheckBox();
+    @FXML
+    Button btnRegistration = new Button();
+    @FXML
+    Button btnPhoto = new Button();
+    @FXML
+    Button btnInsurance = new Button();
+    @FXML
+    Button btnRegister = new Button();
+    @FXML
+    CheckBox chkPenalty = new CheckBox();
+    @FXML
+    CheckBox chkPlate = new CheckBox();
+    @FXML
+    Label labelNum = new Label();
     Connection conn;
 
     public IAController() throws SQLException{
         conn = MyConnection.connectDB();
     }
-    public void OnClickRegister(ActionEvent actionEvent) throws SQLException{
-        String first_name = txtFName.getText();
-        String last_name = txtLName.getText();
-        String mobile = txtMobile.getText();
-        String serialNum = txtSerialNum.getText();
-        String vehicleType = (String) cmbType.getValue();
 
-        String query = "SELECT * FROM users WHERE user_product_id=? AND first_name=? AND last_name=? AND phone_num=? AND email=?";
-        PreparedStatement ps = conn.prepareStatement(query);
-        ps.setString(1, first_name);
-        ps.setString(2, last_name);
-        ps.setString(3, mobile);
-        ps.setString(4, serialNum);
-        ps.setString(5, vehicleType);
 
-        ResultSet rs = ps.executeQuery();
+    public void onClickRegister(ActionEvent actionEvent) throws SQLException, IOException {
+        //gets all input values and assigns them to variables
+//        String first_name = txtFName.getText();
+//        String last_name = txtLName.getText();
+//        int userId = Integer.parseInt(txtID.getText());
+//        String phone_num = txtMobile.getText();
+//        String serialNum = txtSerialNum.getText();
+//        String vehicleType = (String) cmbType.getValue();
+//        String brand = (String) cmbBrand.getValue();
+//        String primColor = String.valueOf(cmbPrimColor.getValue());
+//        String secColor = String.valueOf(cmbSecColor.getValue());
+//
+//        //adds info to database
+//        //users
+//        String query1 = "SELECT * FROM users WHERE first_name=? AND last_name=? AND phone_num=? AND user_id=?";
+//        PreparedStatement ps = conn.prepareStatement(query1);
+//        ps.setString(1, first_name);
+//        ps.setString(2, last_name);
+//        ps.setString(3, phone_num);
+//        ps.setString(4, String.valueOf(userId));
+//
+//        //vehicles
+//        String query2 = "SELECT * FROM vehicles WHERE 1 primColor=? AND vehicleType=? AND serialNum=? AND status=? AND brand=? AND secColor=?";
+//        ResultSet rs = ps.executeQuery();
+//
+//        if (rs.next()){
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("welcome");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Login successful");
+//            alert.showAndWait();
+//        }
+//        else{
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            txtFName.setText("");
+//            txtLName.setText("");
+//            txtMobile.setText("");
+//            txtSerialNum.setText("");
+//            cmbType.getItems().clear();
+//        }
 
-        if (rs.next()){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("welcome");
-            alert.setHeaderText(null);
-            alert.setContentText("Login successful");
-            alert.showAndWait();
-        }
-        else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            txtFName.setText("");
-            txtLName.setText("");
-            txtMobile.setText("");
-            txtSerialNum.setText("");
-            cmbType.getItems().clear();
-        }
+        //code here to transfer to next fxml ui (WebsiteHome.fxml)
+        FXMLLoader fxmlLoader2 = new FXMLLoader(IAApplication.class.getResource("WebsiteHome.fxml"));
+        Scene scene = new Scene(fxmlLoader2.load(), 600, 400);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
+    // code here for choosing photo in IA.fxml (when registering vehicle)
+//    public void onClickPhoto(ActionEvent actionEvent) throws SQLException{
+//
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Select Photo File");
+//        File file = fileChooser.showOpenDialog(null);
+//        if (file != null){
+//            //code here
+//            }
 }
+

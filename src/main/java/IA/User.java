@@ -1,11 +1,15 @@
 package IA;
 
+import java.util.ArrayList;
+
 public class User {
     private int userId;
     private String first_name;
     private String last_name;
     private String email;
     private String phoneNum;
+    private String userType; //user admin
+    private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     public User(int userId, String email, String phoneNum, String first_name, String last_name) {
         this.userId = userId;
@@ -53,5 +57,21 @@ public class User {
 
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
+    }
+
+    public ArrayList<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(ArrayList<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }
