@@ -9,10 +9,9 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:controller="IA.IAController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="709.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="709.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IA.IAController">
    <children>
       <ComboBox fx:id="cmbType" layoutX="26.0" layoutY="159.0" prefWidth="150.0" promptText="enter type here" />
       <ColorPicker fx:id="cmbPrimColor" layoutX="284.0" layoutY="183.0" prefHeight="26.0" prefWidth="92.0" />
@@ -59,7 +58,6 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="26.0" layoutX="500.0" layoutY="226.0" stroke="BLACK" strokeType="INSIDE" width="186.0" />
       <ComboBox fx:id="cmbPurpose" layoutX="284.0" layoutY="116.0" prefWidth="150.0" promptText="Select purpose" />
       <Label layoutX="380.0" layoutY="189.0" text="Primary">
          <font>
@@ -81,19 +79,18 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="26.0" layoutX="500.0" layoutY="285.0" stroke="BLACK" strokeType="INSIDE" width="186.0" />
       <Label layoutX="501.0" layoutY="261.0" text="Serial Code / Chassis Number">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="btnRegistration" layoutX="278.0" layoutY="346.0" mnemonicParsing="false" text="Select" />
-      <Label layoutX="282.0" layoutY="260.0" text="Registration Attatchment">
+      <Button fx:id="btnRegistration" layoutX="276.0" layoutY="383.0" mnemonicParsing="false" onAction="#onClickRegistrationPhoto" text="Select" />
+      <Label layoutX="287.0" layoutY="263.0" text="Registration Attatchment">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="283.0" layoutY="278.0" prefHeight="63.0" prefWidth="196.0" text="(Any documents proof the ownership of the motorized vehicle e.g. government registration, purchase order, sale invoices, email agreement, etc...)" textAlignment="JUSTIFY">
+      <Label fx:id="labelRegistration" layoutX="283.0" layoutY="278.0" prefHeight="69.0" prefWidth="196.0" text="(Any documents proof the ownership of the motorized vehicle e.g. government registration, purchase order, sale invoices, email agreement, etc...)" textAlignment="JUSTIFY">
          <font>
             <Font size="10.0" />
          </font>
@@ -125,7 +122,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="500.0" layoutY="173.0" text="153270428" />
+      <Label id="labelNum" fx:id="labelNum" layoutX="500.0" layoutY="173.0" text="153270428" />
       <CheckBox fx:id="chkSafety" layoutX="27.0" layoutY="423.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="552.0" text="I acknowledge that I must own a bike helmet, and my vehicle must include front and rear lights to follow the safety guidelines">
          <font>
             <Font size="10.0" />
@@ -136,14 +133,13 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="btnPhoto" layoutX="29.0" layoutY="378.0" mnemonicParsing="false" prefWidth="53.0" text="Select" />
-      <Label layoutX="31.0" layoutY="345.0" prefHeight="19.0" prefWidth="196.0" text="(Any photos of owned motorized vehicle for easy distinguishability and identification of vehicle))" textAlignment="JUSTIFY">
+      <Button fx:id="btnPhoto" layoutX="29.0" layoutY="385.0" mnemonicParsing="false" onAction="#onClickVehiclePhoto" prefWidth="53.0" text="Select" />
+      <Label layoutX="29.0" layoutY="345.0" prefHeight="19.0" prefWidth="196.0" text="(Any photos of owned motorized vehicle )" textAlignment="JUSTIFY">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
       <Button fx:id="btnRegister" layoutX="30.0" layoutY="515.0" mnemonicParsing="false" onAction="#onClickRegister" text="Register" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="26.0" layoutX="500.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" width="186.0" />
       <TextField fx:id="txtFName" layoutX="501.0" layoutY="57.0" prefHeight="26.0" prefWidth="160.0" />
       <TextField fx:id="txtMobile" layoutX="501.0" layoutY="226.0" prefHeight="26.0" prefWidth="164.0" />
       <TextField fx:id="txtSerialNum" layoutX="500.0" layoutY="285.0" prefHeight="26.0" prefWidth="164.0" />
@@ -152,9 +148,17 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="26.0" layoutX="500.0" layoutY="111.0" stroke="BLACK" strokeType="INSIDE" width="186.0" />
       <TextField fx:id="txtLName" layoutX="501.0" layoutY="111.0" prefHeight="26.0" prefWidth="160.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="26.0" layoutX="285.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" width="151.0" />
-      <TextField fx:id="txtID" layoutX="286.0" layoutY="57.0" prefHeight="26.0" prefWidth="120.0" />
+      <TextField fx:id="txtID" layoutX="284.0" layoutY="57.0" prefHeight="26.0" prefWidth="120.0" />
+      <Label fx:id="labelPhoto" layoutX="30.0" layoutY="365.0" text="No selected photo/file">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelRegPhoto" layoutX="277.0" layoutY="364.0" text="No selected photo/file">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
