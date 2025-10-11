@@ -7,7 +7,7 @@ public class MyConnection {
     static Connection conn = null;
 
     public static Connection connectDB() throws SQLException {
-        conn = DriverManager.getConnection("jdbc:mysql://Localhost: 8889/IATest",
+        conn = DriverManager.getConnection("jdbc:mysql://Localhost: 8889/registered_vehicles",
                 "root", "root");
         System.out.println("Connection successful");
         return conn;

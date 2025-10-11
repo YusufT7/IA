@@ -15,9 +15,9 @@ public class IAApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(IAApplication.class.getResource("IA.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        primaryStage.setTitle("Register new vehicle");
+        FXMLLoader fxmlLoader = new FXMLLoader(IAApplication.class.getResource("LogIn.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 435, 400);
+        primaryStage.setTitle(null);
         primaryStage.setScene(scene);
         primaryStage.show();
 
