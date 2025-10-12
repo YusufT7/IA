@@ -2,6 +2,7 @@ module com.example.ia {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires java.naming;
 
 
     opens com.example.ia to javafx.fxml;

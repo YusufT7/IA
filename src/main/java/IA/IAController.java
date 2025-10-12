@@ -123,9 +123,9 @@ public class IAController {
             alert.setContentText("Please fill all missing fields");
             alert.showAndWait();
         } else {
-            //adds info to database
+            //updates info to database (of logged-in user)
             //users
-            String query1 = "INSERT INTO users (first_name, last_name, phone_num, user_id, email, userType) VALUES (?, ?, ?, ?, 'emailexample@gmail.com', 'user')";
+            String query1 = "UPDATE `users` SET `first_name`=?,`last_name`=?,`phone_num`=?,`user_id`=? WHERE email = ?";
             PreparedStatement ps = conn.prepareStatement(query1);
             ps.setString(1, first_name);
             ps.setString(2, last_name);
@@ -144,8 +144,6 @@ public class IAController {
             ps2.setString(3, serialNum);
             ps2.setString(4, brand);
             ps2.setString(5, secColor);
-            int rowsAffected2 = ps2.executeUpdate();
-            System.out.println(rowsAffected2 + " row(s) inserted.");
             //ResultSet rs2 = ps.executeQuery(query2);
 
 

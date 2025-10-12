@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IA.SignUpController">
+   <children>
+      <TextField fx:id="txtNewEmail" layoutX="138.0" layoutY="116.0" />
+      <PasswordField fx:id="txtNewPassword" layoutX="138.0" layoutY="188.0" />
+      <Label layoutX="137.0" layoutY="92.0" text="Enter email" />
+      <Label layoutX="137.0" layoutY="151.0" text="Create password" />
+      <Label layoutX="85.0" layoutY="14.0" text="Account Registration">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="txtNewPasswordConfirm" layoutX="137.0" layoutY="247.0" />
+      <Label layoutX="137.0" layoutY="222.0" text="Verify password" />
+      <Button fx:id="btnCreateAccount" layoutX="137.0" layoutY="286.0" mnemonicParsing="false" onAction="#onClickCreateAccount" text="Create Account">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnLogIn" layoutX="240.0" layoutY="316.0" mnemonicParsing="false" onAction="#onClickLogIn" text="Log in">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Button>
+      <Label layoutX="138.0" layoutY="168.0" text="Enter at least 8 characters">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="137.0" layoutY="319.0" text="Already have an account? ">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
