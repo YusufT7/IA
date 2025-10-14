@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IA.WebsiteEditController">
+   <children>
+      <Label layoutX="145.0" layoutY="17.0" text="Edit/Modify Registered Vehicle Information">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="538.0" layoutY="85.0" text="Motorized Brand">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtEditBrand" layoutX="537.0" layoutY="106.0" prefHeight="26.0" prefWidth="164.0" />
+      <Label layoutX="539.0" layoutY="157.0" text="Purpose">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbEditPurpose" layoutX="540.0" layoutY="178.0" prefWidth="150.0" promptText="Select purpose" />
+      <ComboBox fx:id="cmbEditType" layoutX="57.0" layoutY="177.0" prefWidth="150.0" promptText="Enter type here" />
+      <Label layoutX="57.0" layoutY="160.0" text="Motorized Type">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtEditSerialNum" layoutX="296.0" layoutY="105.0" prefHeight="26.0" prefWidth="164.0" />
+      <ColorPicker fx:id="cmbEditPrimary" layoutX="299.0" layoutY="181.0" prefHeight="26.0" prefWidth="92.0" />
+      <Label layoutX="299.0" layoutY="160.0" text="Motorized Color">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="395.0" layoutY="196.0" text="Primary">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="395.0" layoutY="229.0" text="Secondary">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <ColorPicker fx:id="cmbEditSecondary" layoutX="299.0" layoutY="214.0" prefHeight="26.0" prefWidth="92.0">
+         <value>
+            <Color />
+         </value>
+      </ColorPicker>
+      <Button fx:id="btnReselectRPhoto" layoutX="303.0" layoutY="378.0" mnemonicParsing="false" onAction="#onClickNewRegistrationPhoto" text="Select" />
+      <Label layoutX="302.0" layoutY="275.0" text="Registration Attatchment">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblReg" layoutX="300.0" layoutY="290.0" prefHeight="69.0" prefWidth="196.0" text="(Any documents proof the ownership of the motorized vehicle e.g. government registration, purchase order, sale invoices, email agreement, etc...)" textAlignment="JUSTIFY">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="543.0" layoutY="276.0" text="Insurance Policy">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnReselectPolicy" layoutX="544.0" layoutY="316.0" mnemonicParsing="false" onAction="#onClickNewInsurancePhoto" text="Select" />
+      <Label layoutX="58.0" layoutY="278.0" prefHeight="17.0" prefWidth="113.0" text="Photos of Vehicle">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnReselectVPhoto" layoutX="59.0" layoutY="336.0" mnemonicParsing="false" onAction="#onClickNewVehiclePhoto" prefWidth="53.0" text="Select" />
+      <Label layoutX="58.0" layoutY="295.0" prefHeight="19.0" prefWidth="196.0" text="(Any photos of owned motorized vehicle )" textAlignment="JUSTIFY">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblVPhoto" layoutX="58.0" layoutY="319.0" text="No selected photo/file">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblRPhoto" layoutX="303.0" layoutY="363.0" text="No selected photo/file">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPolicy" layoutX="545.0" layoutY="300.0" text="No selected photo/file">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="296.0" layoutY="84.0" text="New Serial /Chassis Code">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="21.0" text="Request Type">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="39.0" text="Modify/Edit">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnSubmitEdit" layoutX="58.0" layoutY="452.0" mnemonicParsing="false" onAction="#onClickSubmitEdit" text="Submit edit">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnBack" layoutX="163.0" layoutY="454.0" mnemonicParsing="false" onAction="#onClickBack" text="Back">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtOldSerialNum" layoutX="57.0" layoutY="105.0" prefHeight="26.0" prefWidth="164.0" />
+      <Label layoutX="57.0" layoutY="84.0" text="Old Serial /Chassis Code">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

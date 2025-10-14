@@ -52,11 +52,11 @@ public class IAController {
     @FXML
     Button btnRegister = new Button();
     @FXML
+    Button btnBack = new Button();
+    @FXML
     CheckBox chkPenalty = new CheckBox();
     @FXML
     CheckBox chkPlate = new CheckBox();
-    @FXML
-    Label labelNum = new Label();
     @FXML
     Label labelPhoto = new Label();
     @FXML
@@ -65,15 +65,10 @@ public class IAController {
     Label labelRegPhoto = new Label();
     @FXML
     Label labelInsPhoto = new Label();
-    Connection conn = MyConnection.connectDB();
+    Connection conn;
 
     public IAController() throws SQLException {
         conn = MyConnection.connectDB();
-    }
-
-    public void initializeStickerNum() {
-        // add code here where the label for sticker number is randomly generated
-        // make sure the sticker number is stored in database(?)
     }
 
     public void initialize() {
@@ -88,6 +83,9 @@ public class IAController {
         //intelliJ
         cmbType.getItems().addAll(types);
         cmbPurpose.getItems().addAll(purpose);
+        chkPlate.setText("I acknowledge that I will return my motorized plate to security when I leave KAUST or whenever am no longer using the " +
+                "\n assigned motorized vehicle plate. And will change the assigned plate number to any other motorized without security " +
+                "\n approval and will report it to security");
 
     }
 
@@ -108,6 +106,7 @@ public class IAController {
         String vehiclePhoto = labelPhoto.getText();
         String registrationPhoto = labelRegPhoto.getText();
         String insurancePhoto = labelInsPhoto.getText();
+        String logged_in_email = User.getCurrentUser().getEmail(); //gets email of user with current email being used
 
 
         //checks if any of the inputs (text field, combobox, etc.) is empty
@@ -123,47 +122,38 @@ public class IAController {
             alert.setContentText("Please fill all missing fields");
             alert.showAndWait();
         } else {
+            //instead of making a new object every time, use.getInstance() so that all data stays in the same
+            Registered registered = Registered.getInstance();
             //updates info to database (of logged-in user)
             //users
             String query1 = "UPDATE `users` SET `first_name`=?,`last_name`=?,`phone_num`=?,`user_id`=? WHERE email = ?";
             PreparedStatement ps = conn.prepareStatement(query1);
             ps.setString(1, first_name);
             ps.setString(2, last_name);
-            ps.setString(3, phone_num);
-            ps.setString(4, String.valueOf(numUserId));
+            ps.setInt(3, Integer.parseInt(phone_num));
+            ps.setInt(4, numUserId);
+            //ensures that the data being updated is happening in the correct column (of which is the logged-in user)
+            ps.setString(5, logged_in_email);
             int rowsAffected = ps.executeUpdate();
-            System.out.println(rowsAffected + " row(s) inserted.");
-
+            System.out.println(rowsAffected + " row(s) updated (in user database).");
+            registered.addUser(User.getCurrentUser()); //might need to fix or exclude
+            //adds new row of vehicle based on user input
             //vehicles
-            String query2 = "INSERT INTO vehicles(primary_color, type, " +
-                    "serial_number, status, brand, secondary_color) " +
-                    "VALUES (?, ?, ?, 'new', ?, ?)";
+            String query2 = "INSERT INTO vehicles(primary_color, type, serial_number, status, brand, secondary_color, user_id, purpose) VALUES (?, ?, ?, 'new', ?, ?, ?, ?)";
             PreparedStatement ps2 = conn.prepareStatement(query2);
             ps2.setString(1, primColor);
             ps2.setString(2, vehicleType);
             ps2.setString(3, serialNum);
             ps2.setString(4, brand);
             ps2.setString(5, secColor);
-            //ResultSet rs2 = ps.executeQuery(query2);
+            ps2.setInt(6, numUserId);
+            ps2.setString(7, purpose);
+            int rowsAdded = ps2.executeUpdate();
+            System.out.println(rowsAdded + " row(s) inserted (in vehicle database).");
 
-
-            //check database?
-//            if (rs.next()) {
-//                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//                alert.setTitle("welcome");
-//                alert.setHeaderText(null);
-//                alert.setContentText("Login successful");
-//                alert.showAndWait();
-//            }
-//            //otherwise, reset everything(?)
-//            else {
-//                Alert alert = new Alert(Alert.AlertType.ERROR);
-//                txtFName.setText("");
-//                txtLName.setText("");
-//                txtMobile.setText("");
-//                txtSerialNum.setText("");
-//                cmbType.getItems().clear();
-//            }
+            //add registered vehicle into arraylist of vehicles
+            registered.addVehicle(new Vehicle("new", primColor, secColor, brand, vehicleType, serialNum),
+                    Integer.parseInt(userId));
 
             //code here to transfer to next fxml ui (WebsiteHome.fxml)
             FXMLLoader WebsiteHomeFxmlLoader = new FXMLLoader(IAApplication.class.getResource("WebsiteHome.fxml"));
@@ -219,6 +209,13 @@ public class IAController {
             }
             labelInsPhoto.setText("Selected photo: " + name + "...");
         }
+    }
+    public void onClickBack(ActionEvent actionEvent) throws IOException {
+        FXMLLoader WebsiteHomeFxmlLoader = new FXMLLoader(IAApplication.class.getResource("WebsiteHome.fxml"));
+        Scene scene = new Scene(WebsiteHomeFxmlLoader.load(), 600, 400);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();;
+        stage.setScene(scene);
+        stage.show();
     }
 
 

@@ -55,6 +55,9 @@ public class SignUpController {
                         int rowsAffected = ps.executeUpdate();
                         System.out.println(rowsAffected + " row(s) inserted.");
 
+                        //store new current user to identify whos using the website (like in LogInController)
+                        User.storeCurrentUser(txtNewEmail.getText(), txtNewPassword.getText());
+
                         //code for transferring to WebsiteHome.fxml
                         FXMLLoader WebsiteHomeFxmlLoader = new FXMLLoader(IAApplication.class.getResource("WebsiteHome.fxml"));
                         Scene scene = new Scene(WebsiteHomeFxmlLoader.load(), 600, 400);

@@ -57,6 +57,8 @@ public class LogInController {
             else{
                 //code for checking if email is associated with government
 
+                //stores email to know which user is currently using website
+                User.storeCurrentUser(txtEmail.getText(), txtPassword.getText());
                 //loads website home fxml
                 FXMLLoader WebsiteHomeFxmlLoader = new FXMLLoader(IAApplication.class.getResource("WebsiteHome.fxml"));
                 Scene scene = new Scene(WebsiteHomeFxmlLoader.load(), 600, 400);

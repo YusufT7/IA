@@ -3,7 +3,7 @@ import javax.naming.directory.*;
 import java.util.Hashtable;
 import java.util.regex.Pattern;
 public class EmailVerifier {
-    //source: chatgpt
+    //source for whole class: chatgpt
 
     // Check the syntax (pattern) of the email
     public static boolean isValidEmailFormat(String email) {

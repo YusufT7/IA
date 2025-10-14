@@ -8,12 +8,16 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import static IA.MyConnection.conn;
 
 public class WebsiteReportController {
     @FXML
-    ComboBox cmbLostOrStolen = new ComboBox();
+    ComboBox <String> cmbLostOrStolen = new ComboBox<>();
     @FXML
-    TextField txtLostOrStolenVehicle = new TextField();
+    TextField txtSerialNumVehicle = new TextField();
     @FXML
     TextField txtLocation = new TextField();
     @FXML
@@ -25,9 +29,9 @@ public class WebsiteReportController {
         String[] reason = {"Lost", "Stolen"};
         cmbLostOrStolen.getItems().addAll(reason);
     }
-    public void onClickSubmit(ActionEvent actionEvent) throws IOException {
+    public void onClickSubmit(ActionEvent actionEvent) throws IOException, SQLException {
         String lostOrStolen = (String) cmbLostOrStolen.getValue();
-        String lostOrStolenVehicle = txtLostOrStolenVehicle.getText();
+        String lostOrStolenVehicle = txtSerialNumVehicle.getText();
         String location = txtLocation.getText();
 
         //check if everything is filled out
@@ -41,6 +45,13 @@ public class WebsiteReportController {
         else{
             //code here to send to admin/government
 
+            //update status
+            String statusQuery = "UPDATE vehicles SET status=? WHERE serial_number=?";
+            PreparedStatement ps = conn.prepareStatement(statusQuery);
+            ps.setString(1, cmbLostOrStolen.getValue());
+            ps.setString(2, txtSerialNumVehicle.getText());
+            int rowsAffected = ps.executeUpdate();
+            System.out.println(rowsAffected + " rows affected");
             //sends back to home
             FXMLLoader WebsiteHomeFxmlLoader = new FXMLLoader(IAApplication.class.getResource("WebsiteHome.fxml"));
             Scene scene = new Scene(WebsiteHomeFxmlLoader.load(), 600, 400);
