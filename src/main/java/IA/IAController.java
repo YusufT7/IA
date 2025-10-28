@@ -115,7 +115,9 @@ public class IAController {
                 || primColor.isEmpty() || secColor.isEmpty()
                 || vehiclePhoto.equals("No selected photo/file")
                 || registrationPhoto.equals("No selected photo/file")
-                || insurancePhoto.equals("No selected photo/file")) {
+                || insurancePhoto.equals("No selected photo/file")
+                || chkSafety == null
+                || chkPenalty == null || chkPlate.getText().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Did not fill all required fields");
             alert.setHeaderText(null);

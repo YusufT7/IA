@@ -38,18 +38,17 @@ public class WebsiteHomeController {
         int userId = User.getUserIdDB(conn, userEmail);
         String query = "SELECT vehicle_product_id, type, serial_number, status " +
                        "FROM vehicles WHERE user_id = ?";
-
-        //chatgpt
-        StringBuilder displayText = new StringBuilder();
-        displayText.append("Vehicle | Product ID | Serial Number | Status \n");
-        displayText.append("------------------------------------------------\n");
-        //end
+        //clears textArea to not overlap with already outputted information
+        vehicleTxtA.clear();
+        //displays all vehicles currently registered by user (currently logged in)
+        vehicleTxtA.appendText("Vehicle | Product ID | Serial Number | Status \n"); //oracle (appendText())
+        vehicleTxtA.appendText("------------------------------------------------\n");
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setInt(1, userId);
         ResultSet rs1 = ps.executeQuery();
         //chatgpt
         while (rs1.next()) {
-            displayText.append(String.format(
+            vehicleTxtA.appendText(String.format(
                 "%s | %s | %s | %s\n",
                 rs1.getString("type"),
                 rs1.getString("vehicle_product_id"),
@@ -59,7 +58,6 @@ public class WebsiteHomeController {
             //end
         }
 
-        vehicleTxtA.setText(displayText.toString());
         vehicleTxtA.setWrapText(false);
         vehicleTxtA.setScrollTop(Double.MAX_VALUE); //chatgpt
     }
