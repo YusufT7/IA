@@ -157,7 +157,7 @@ public class IAController {
             registered.addVehicle(new Vehicle("new", primColor, secColor, brand, vehicleType, serialNum),
                     Integer.parseInt(userId));
 
-            //code here to transfer to next fxml ui (WebsiteHome.fxml)
+            //transfers to next fxml (homepage)
             FXMLLoader WebsiteHomeFxmlLoader = new FXMLLoader(IAApplication.class.getResource("WebsiteHome.fxml"));
             Scene scene = new Scene(WebsiteHomeFxmlLoader.load(), 600, 400);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();;
@@ -213,6 +213,7 @@ public class IAController {
         }
     }
     public void onClickBack(ActionEvent actionEvent) throws IOException {
+        //go back to homepage without adding/registering new vehicle
         FXMLLoader WebsiteHomeFxmlLoader = new FXMLLoader(IAApplication.class.getResource("WebsiteHome.fxml"));
         Scene scene = new Scene(WebsiteHomeFxmlLoader.load(), 600, 400);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();;

@@ -6,12 +6,17 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.simplejavamail.api.email.Email;
+import org.simplejavamail.api.mailer.Mailer;
+import org.simplejavamail.email.EmailBuilder;
+import org.simplejavamail.mailer.MailerBuilder;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import static IA.MyConnection.conn;
+import static IA.SendEmail.sendVehicleStatusEmail;
 
 public class WebsiteReportController {
     @FXML
@@ -43,8 +48,6 @@ public class WebsiteReportController {
             alert.showAndWait();
         }
         else{
-            //code here to send to admin/government
-
             //update status
             String statusQuery = "UPDATE vehicles SET status=? WHERE serial_number=?";
             PreparedStatement ps = conn.prepareStatement(statusQuery);
@@ -52,15 +55,19 @@ public class WebsiteReportController {
             ps.setString(2, txtSerialNumVehicle.getText());
             int rowsAffected = ps.executeUpdate();
             System.out.println(rowsAffected + " rows affected");
+
             //sends back to home
             FXMLLoader WebsiteHomeFxmlLoader = new FXMLLoader(IAApplication.class.getResource("WebsiteHome.fxml"));
             Scene scene = new Scene(WebsiteHomeFxmlLoader.load(), 600, 400);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();;
             stage.setScene(scene);
             stage.show();
+            //baedung
+            sendVehicleStatusEmail(User.getCurrentUser().getEmail(), lostOrStolen);
         }
     }
     public void onClickBack(ActionEvent actionEvent) throws IOException {
+        //stack overflow
         FXMLLoader WebsiteHomeFxmlLoader = new FXMLLoader(IAApplication.class.getResource("WebsiteHome.fxml"));
         Scene scene = new Scene(WebsiteHomeFxmlLoader.load(), 600, 400);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();;

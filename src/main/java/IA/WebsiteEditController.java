@@ -15,6 +15,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.simplejavamail.api.email.Email;
+import org.simplejavamail.email.EmailBuilder;
+import org.simplejavamail.api.mailer.Mailer;
+import org.simplejavamail.mailer.MailerBuilder;
+
+import static IA.SendEmail.sendVehicleStatusEmail;
+
 
 public class WebsiteEditController {
     @FXML
@@ -153,6 +160,9 @@ public class WebsiteEditController {
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();;
             stage.setScene(scene);
             stage.show();
+
+            //Baeldung
+            sendVehicleStatusEmail(User.getCurrentUser().getEmail(), "Updated");
         }
 
     }

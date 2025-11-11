@@ -33,7 +33,8 @@ public class SignUpController {
     }
 
     public void onClickCreateAccount(ActionEvent actionEvent) throws SQLException, IOException {
-        if(txtNewEmail.getText().isEmpty() || txtNewPassword.getText().isEmpty() || txtNewPasswordConfirm.getText().isEmpty()) {
+        if(txtNewEmail.getText().isEmpty() || txtNewPassword.getText().isEmpty()
+                || txtNewPasswordConfirm.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Did not fill all required fields");
             alert.setHeaderText(null);
